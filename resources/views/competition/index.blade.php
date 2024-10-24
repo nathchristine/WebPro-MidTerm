@@ -5,39 +5,229 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/b09fd6009e.js" crossorigin="anonymous"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
+    <style>
+        body {
+            font-family: 'Fredoka One', sans-serif;
+        }
+        .navbar-nav .nav-link {
+            font-family: 'Fredoka One', sans-serif;
+            text-transform: uppercase;
+        }
+        .navbar-brand {
+            text-transform: uppercase;
+            font-size: 1.5rem;
+        }
+        .login-btn {
+            background-color: #A8DADC;
+            border-color: #A8DADC;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            color: #000;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+        .register-btn {
+            background-color: #F4A3A8;
+            border-color: #F4A3A8;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            color: #000;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+        .navbar {
+            background-color: #FAEDCB;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            font-size: 1.2rem;
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 20px;
+        }
+        .navbar-nav {
+            align-items: center;
+        }
+        .nav-item-gap {
+            margin-right: 20px; /* Add a gap between Result and Login */
+        }
+
+        .btn-update, .btn-delete {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 48px;
+            height: 48px;
+            background-color: #F4A3A8;
+            border-color: #F4A3A8;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        
+        /* Specific color change for delete button */
+        .btn-delete {
+            background-color: #FF6F6F;
+            border-color: #FF6F6F;
+        }
+
+        .btn-add {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #A8DADC;
+            border-color: #A8DADC;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 10px 20px; /* Adjust padding for space between text and icon */
+            margin-right: 45px;
+        }
+
+        .btn-add i {
+            margin-left: 10px; /* Add space between text and icon */
+        }
+
+        /* Card style adjustments */
+        .participant-list .card {
+            margin-top: 20px; /* Less space between the add button and cards */
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif; /* Apply Poppins to the participant name */
+
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px; /* Increase space between navbar and h1 */
+        }
+
+        /* Right alignment for the Add button */
+        .add-competition-container {
+            display: flex;
+            justify-content: flex-end; /* Align to the right */
+            margin-right: 30px;
+            margin-top: 10px; /* Reduce space above the Add button */
+        }
+    </style>
+    <title>Competition List</title>
 </head>
 <body>
-    <h1>Competition</h1> <br>
-    <a href="/IUPCompeList/Add" class="btn btn-primary">Add Competition</a>
-    <div class= "container">
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Competition Name</th>
-                <th>Desc</th>
-                <th>Date</th>
-                <th>Action</th>
 
-            </tr>
-            @foreach($competition as $c)
-            <tr>
-                <td>{{$c->id}}</td>
-                <td>{{$c->name}}</td>
-                <td>{{$c->description}}</td>
-                <td>{{$c->date}}</td>
-                <td>
-                    <a href="/IUPCompeList/Update/{{$c->id}}" class="btn btn-warning">Update</a>
-                    <form action="/IUPCompeList/{{$c->id}}" method= "POST">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" value="Delete" class="btn btn-danger">
-                    </form>
-            </tr>
-            @endforeach
-        </table>
-    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">IUP Competition</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse align-right" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link"  href="/#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/IUPParticipantList">Participant</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="IUPCompeList">Competition</a>
+              </li>
+              <li class="nav-item nav-item-gap">
+                <a class="nav-link" href="IUPResultList">Result</a>
+              </li>
+              <li class="nav-item">
+                <a href="/login" class="btn login-btn me-2" role="button">Login</a>
+              </li>
+              <li class="nav-item">
+                <a href="/register" class="btn register-btn" role="button">Register</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     
+    <div class="container text-center">
+        <h1>COMPETITION LIST</h1>
+    </div>
+
+     <!-- Add this block right after the opening <body> tag or in the appropriate place -->
+        <div class="container">
+            @if(session('success'))
+            <div id="success-message" class="alert alert-success text-center" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
+        </div>
+
+    <!-- Add button aligned to the right -->
+    <div class="add-competition-container">
+        <a href="/IUPCompeList/Add" class="btn btn-add">
+            Add Competition <i class="fa-solid fa-user-plus fa-beat"></i>
+        </a>
+    </div>
+
+    <!-- Participant List Section -->
+    <div class="container participant-list">
+        <div class="row">
+            @foreach($competition as $c)
+            <div class="col-md-4"> <!-- Adjust for 3 columns on medium-sized screens -->
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$c->name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{$c->date}}</h6>
+                        <p class="card-text">{{$c->description}}</p>
+                        <!-- Action buttons aligned to the right -->
+                        <div class="d-flex justify-content-end">
+                            <a href="/IUPCompeList/Update/{{$c->id}}" class="btn btn-update me-2">
+                                <i class="fa-solid fa-pencil fa-beat"></i>
+                            </a>
+                            <form action="/IUPCompeList/{{$c->id}}" method="POST" class="btn-delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-delete">
+                                    <i class="fa-solid fa-trash fa-bounce"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const jsConfetti = new JSConfetti();
+
+      window.onload = function() {
+          const successMessage = document.getElementById('success-message');
+          if (successMessage) {
+              // Show confetti
+              jsConfetti.addConfetti({
+                  confettiRadius: 6,
+                  confettiNumber: 500,
+              });
+
+              setTimeout(() => {
+                    successMessage.classList.add('fade-out');
+                }, 3000);  // 3-second delay before hiding the message
+
+                // Remove the element from the DOM after the fade-out transition (after 4 seconds)
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 4000);
+            }
+          };
+    
+    </script>
+
 </body>
 </html>
-

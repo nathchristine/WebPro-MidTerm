@@ -21,9 +21,8 @@ class CompetitionController extends Controller
     public function addComplete(Request $request)
     {
         Competition::create($request->except(['_token','submit']));
-        //return redirect()->route('competition.index')->with('success', 'Competition added successfully!');
 
-        return redirect('IUPCompeList');
+        return redirect('IUPCompeList')->with('success', 'Competition added successfully!');
     }
 
     public function update($id)
@@ -35,7 +34,7 @@ class CompetitionController extends Controller
     public function updateComplete(Request $request, $id)
     {
         Competition::find($id)->update($request->except(['_token','submit']));
-        return redirect('IUPCompeList');
+        return redirect('IUPCompeList')->with('success', 'Competition updated successfully!');
     }
 
     public function delete($id)

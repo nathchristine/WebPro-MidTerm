@@ -25,7 +25,7 @@ class ParticipantController extends Controller
     public function addComplete(Request $request)
     {
         Participant::create($request->except(['_token','submit']));
-        return redirect('IUPParticipantList');
+        return redirect('IUPParticipantList')->with('success', 'Your Participant has been added successfully!');
     }
 
     public function update($id)
@@ -38,7 +38,7 @@ class ParticipantController extends Controller
     public function updateComplete(Request $request, $id)
     {
         Participant::find($id)->update($request->except(['_token','submit']));
-        return redirect('IUPParticipantList');
+        return redirect('IUPParticipantList')->with('success', 'Your Participant has been updated successfully!');
     }
 
     public function delete($id)

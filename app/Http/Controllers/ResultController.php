@@ -22,14 +22,15 @@ class ResultController extends Controller
     {
         $competition = Competition::all();
         $participant = Participant::all();
-        return view('result.add', compact(['competition','participant']));
+        $result = Result::all();
+        return view('result.add', compact(['competition','participant','result']));
     }
 
     public function addComplete(Request $request)
     {
         // dd($request->all());
         Result::create($request->except(['_token','submit']));
-        return redirect('IUPResultList');
+        return redirect('/IUPResultList')->with('success', 'Your result has been added successfully!');;
     }
 
     public function delete($id)

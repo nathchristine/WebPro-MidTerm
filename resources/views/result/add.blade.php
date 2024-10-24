@@ -1,19 +1,182 @@
-<h1>Add New Result</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/b09fd6009e.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 
-<form action="/IUPResultList/AddComplete" method="POST">
-    @csrf
-    <select name="participants_id" placeholder="Select Participant">
-        <option value="" disabled selected>Select Participant</option>
-        @foreach($participant as $p)
-        <option value="{{$p->id}}">{{$p->name}}</option>
-        @endforeach
-    </select> <br>
-   <select name="competition_id" placeholder="Select Competition">
-        <option value="" disabled selected>Select Competition</option>
-        @foreach($competition as $c)
-        <option value="{{$c->id}}">{{$c->name}}</option>
-        @endforeach
-    </select> <br>
-    <input type="text" name="score" placeholder="Participant Score"> <br>
-    <input type="submit" name="submit" value="Add">
-</form>
+    <style>
+        body {
+            font-family: 'Fredoka One', sans-serif;
+            /* background-color: #f8f9fa; */
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin:  auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Poppins', sans-serif;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #343a40;
+        }
+        .form-control, .form-select {
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+        }
+        .btn-submit {
+            width: 100%;
+            background-color: #90BE6D;
+            border-color: #90BE6D;
+            color: #fff;
+            padding: 10px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-submit:hover {
+            background-color: #4cae4c;
+        }
+
+        /* Back Button Styles */
+        .btn-back {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #A8DADC;
+            border-color: #A8DADC;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        .btn-back i {
+            margin-right: 10px; /* Add space between the icon and text */
+        }
+
+        /* Center align the Back button */
+        .back-result-container {
+            display: flex;
+            justify-content: flex-start;
+            max-width: 600px;
+            margin: 20px auto 0 auto; /* Center it horizontally and add margin-top */
+        }
+
+        .alert {
+            display: none;
+            color: red;
+            font-weight: bold;
+            margin-top: 5px; /* Reduced the margin to bring it closer */
+            padding: 0;
+        }
+
+
+        /* Disable submit button when score exists */
+        .btn-submit:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+    <title>Add New Result</title>
+</head>
+<body>
+
+    <h1>ADD NEW RESULT</h1>
+
+    <!-- Back Button -->
+    <div class="back-result-container">
+        <a href="/IUPResultList/" class="btn btn-back">
+            <i class="fa-solid fa-arrow-left fa-fade"></i> Back 
+        </a>
+    </div>
+
+    <!-- Form Container -->
+    <div class="container form-container">
+        <form action="/IUPResultList/AddComplete" method="POST">
+            @csrf
+            <!-- Participant Selection -->
+            <div class="mb-3">
+                <label for="participants_id" class="form-label">Select Participant</label>
+                <select class="form-select" name="participants_id" id="participants_id" required onchange="updateCompetition()">
+                    <option value="" disabled selected>Select Participant</option>
+                    @foreach($participant as $p)
+                    <option value="{{$p->id}}" data-competition="{{$competition->find($p->competition_id)->name}}" data-competition-id="{{$p->competition_id}}" data-has-score="{{ $result->where('participants_id', $p->id)->isNotEmpty() ? 'true' : 'false' }}">{{$p->name}}</option>                    @endforeach
+                </select>
+            </div>
+
+            <!-- Competition Selection (Auto-selected) -->
+            <div class="mb-3">
+                <label for="competition_id" class="form-label">Competition</label>
+                <input type="text" class="form-control" id="competition_display" disabled>
+                <input type="hidden" name="competition_id" id="competition_id" required>
+            </div>
+
+            <!-- Participant Score -->
+            <div class="mb-3">
+                <label for="score" class="form-label">Participant Score</label>
+                <input type="text" class="form-control" name="score" id="score" placeholder="Enter Participant's Score" required>
+                <!-- Alert Message -->
+                <div class="alert" id="alert-message">
+                    This participant already has a score.
+                </div>
+            </div>
+
+            <!-- Alert Message -->
+            <div class="alert" id="alert-message">
+                This participant already has a score.
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-submit">Add Result</button>
+        </form>
+    </div>
+
+    <!-- JavaScript for Auto-Selecting Competition -->
+    <script>
+        function updateCompetition() {
+            const participantSelect = document.getElementById('participants_id');
+            const selectedOption = participantSelect.options[participantSelect.selectedIndex];
+            const competitionName = selectedOption.getAttribute('data-competition');
+            const competitionId = selectedOption.getAttribute('data-competition-id');
+            const hasScore = selectedOption.getAttribute('data-has-score') === 'true';
+
+            // Update the competition fields
+            document.getElementById('competition_display').value = competitionName;
+            document.getElementById('competition_id').value = competitionId;
+
+            // Check if the participant already has a score
+            const submitButton = document.querySelector('.btn-submit'); // Fixed the button selector
+            const alertMessage = document.getElementById('alert-message');
+
+            if (hasScore) {
+                submitButton.disabled = true;  // Disable the submit button
+                alertMessage.style.display = 'block';  // Show the alert message
+            } else {
+                submitButton.disabled = false;  // Enable the submit button
+                alertMessage.style.display = 'none';  // Hide the alert message
+            }
+            jsConfetti.addConfetti({
+                confettiRadius: 6,
+                confettiNumber: 500,
+            });
+        }
+    </script>
+
+</body>
+</html>
