@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,15 +34,14 @@
         }
 
         .btn-back i {
-            margin-right: 10px; /* Add space between the icon and text */
+            margin-right: 10px; 
         }
 
-        /* Center align the Back button */
         .back-result-container {
             display: flex;
             justify-content: flex-start;
             max-width: 600px;
-            margin: 20px auto 0 auto; /* Center it horizontally and add margin-top */
+            margin: 20px auto 0 auto;
         }
 
         .form-container {
@@ -83,10 +81,9 @@
             background-color: #4cae4c;
         }
 
-        /* Right alignment for the Add button */
         .add-competition-container {
             display: flex;
-            justify-content: flex-end; /* Align to the right */
+            justify-content: flex-end;
             margin-right: 30px;
         }
     </style>
@@ -102,35 +99,29 @@
         </a>
     </div>
 
-    <!-- Form Container -->
     <div class="container form-container">
         <form action="/IUPCompeList/AddComplete" method="POST">
             @csrf
 
-            <!-- Competition Name -->
             <div class="mb-3">
                 <label for="name" class="form-label">Competition Name</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter Competition Name" required>
             </div>
 
-            <!-- Description -->
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" id="description" name="description" placeholder="Enter Description" rows="4" required></textarea>
             </div>
 
-            <!-- Date -->
             <div class="mb-3">
                 <label for="date" class="form-label">Competition Date</label>
                 <input type="date" class="form-control" id="date" name="date" required>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn btn-submit">Add Competition</button>
         </form>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
