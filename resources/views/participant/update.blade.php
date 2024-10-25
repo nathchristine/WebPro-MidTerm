@@ -85,7 +85,7 @@
 </head>
 <body>
 
-    <h1>UPDATE NEW PARTICIPANT</h1>
+    <h1>UPDATE PARTICIPANT</h1>
 
     <div class="back-result-container">
         <a href="/IUPParticipantList/" class="btn btn-back">
