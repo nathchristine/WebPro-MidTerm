@@ -88,7 +88,7 @@
     <h1>UPDATE NEW COMPETITION</h1>
 
     <div class="back-result-container">
-        <a href="/IUPResultList/" class="btn btn-back">
+        <a href="/IUPCompeList/" class="btn btn-back">
             <i class="fa-solid fa-arrow-left fa-fade"></i> Back 
         </a>
     </div>
