@@ -98,31 +98,26 @@
             @method('PUT')
             @csrf
 
-            <!-- Competition ID -->
             <div class="mb-3">
                 <label for="competition_id" class="form-label">Competition ID</label>
                 <input type="text" class="form-control" id="competition_id" name="id" value="{{$competition->id}}" required readonly>
             </div>
 
-            <!-- Competition Name -->
             <div class="mb-3">
                 <label for="name" class="form-label">Competition Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{$competition->name}}" required>
             </div>
 
-            <!-- Competition Description -->
             <div class="mb-3">
                 <label for="description" class="form-label">Competition Description</label>
                 <textarea class="form-control" id="description" name="description" required>{{$competition->description}}</textarea>
             </div>
 
-            <!-- Competition Date -->
             <div class="mb-3">
                 <label for="date" class="form-label">Competition Date</label>
                 <input type="date" class="form-control" id="date" name="date" value="{{$competition->date}}" required>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn btn-submit">Update Competition</button>
         </form>
     </div>
