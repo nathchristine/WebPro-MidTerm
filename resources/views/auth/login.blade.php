@@ -53,23 +53,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <title>Login Page</title>
     
     <style>
         body {
+            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f8f9fa;
+            background-color: #ffffff;
         }
 
         .login-container {
-            max-width: 400px;
+            max-width: 500px;
             padding: 30px;
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Fredoka One', sans-serif;
         }
 
         h2 {
@@ -79,8 +87,8 @@
 
         .btn-login {
             width: 100%;
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: #A0C4FF;
+            border-color: #A0C4FF;
             color: #fff;
             padding: 10px;
             font-size: 1.2rem;
@@ -88,17 +96,28 @@
         }
 
         .btn-login:hover {
-            background-color: #0056b3;
+            background-color: #A0C4FF;
         }
 
         .form-label {
             font-weight: bold;
+        }
+
+        .mt-3 a {
+            color: #9D8189;
+            text-decoration: none;
+        }
+
+        .mt-3 a:hover {
+            color: #8E9AAF;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
     <div class="login-container">
+        <h1>IUP COMPETITION</h1>
         <h2>Login</h2>
         <form action="/login" method="POST">
             @csrf <!-- Include CSRF token for Laravel applications -->

@@ -90,7 +90,7 @@
     <h1>ADD NEW PARTICIPANT</h1>
 
     <div class="back-result-container">
-        <a href="/IUPResultList/" class="btn btn-back">
+        <a href="/IUPParticipantList/" class="btn btn-back">
             <i class="fa-solid fa-arrow-left fa-fade"></i> Back 
         </a>
     </div>

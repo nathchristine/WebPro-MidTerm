@@ -130,23 +130,23 @@
           <div class="collapse navbar-collapse align-right" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link"  href="/#">Home</a>
+                <a class="nav-link"  href="/dashboard">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/IUPParticipantList">Participant</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="IUPCompeList">Competition</a>
+                <a class="nav-link active" aria-current="page" href="/IUPCompeList">Competition</a>
               </li>
               <li class="nav-item nav-item-gap">
-                <a class="nav-link" href="IUPResultList">Result</a>
+                <a class="nav-link" href="/IUPResultList">Result</a>
               </li>
               <li class="nav-item">
-                <a href="/login" class="btn login-btn me-2" role="button">Login</a>
-              </li>
-              <li class="nav-item">
-                <a href="/register" class="btn register-btn" role="button">Register</a>
-              </li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn register-btn" role="button">Logout</button>
+                </form>
+            </li>
             </ul>
           </div>
         </div>

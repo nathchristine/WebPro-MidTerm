@@ -20,6 +20,32 @@
             color: #343a40;
         }
 
+        .btn-back {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #A8DADC;
+            border-color: #A8DADC;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        .btn-back i {
+            margin-right: 10px; /* Add space between the icon and text */
+        }
+
+        /* Center align the Back button */
+        .back-result-container {
+            display: flex;
+            justify-content: flex-start;
+            max-width: 600px;
+            margin: 20px auto 0 auto; /* Center it horizontally and add margin-top */
+        }
+
         .form-container {
             max-width: 600px;
             margin: auto;
@@ -70,6 +96,11 @@
 <body>
 
     <h1>ADD NEW COMPETITION</h1>
+    <div class="back-result-container">
+        <a href="/IUPCompeList/" class="btn btn-back">
+            <i class="fa-solid fa-arrow-left fa-fade"></i> Back 
+        </a>
+    </div>
 
     <!-- Form Container -->
     <div class="container form-container">

@@ -41,14 +41,15 @@
             font-size: 1.1rem;
         }
         .navbar {
-            background-color: #FAEDCB;
+            background-color: #FAEDCB; /* Light yellow background */
             padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 25px;
+            /* Removed border */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+            border-radius: 25px; /* Rounded corners for navbar */
             font-size: 1.2rem;
-            margin-left: 30px;
-            margin-right: 30px;
-            margin-top: 20px;
+            margin-left: 30px;  /* Add left margin */
+            margin-right: 30px; /* Add right margin */
+            margin-top: 20px;  /* Add top margin */
         }
         .navbar-nav {
             align-items: center;
@@ -184,22 +185,22 @@
             <div class="collapse navbar-collapse align-right" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/#">Home</a>
+                        <a class="nav-link" href="/dashboard">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/IUPParticipantList">Participant</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="IUPCompeList">Competition</a>
+                        <a class="nav-link" href="/IUPCompeList">Competition</a>
                     </li>
                     <li class="nav-item nav-item-gap">
-                        <a class="nav-link" href="IUPResultList">Result</a>
+                        <a class="nav-link" href="/IUPResultList">Result</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/login" class="btn login-btn me-2" role="button">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/register" class="btn register-btn" role="button">Register</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn register-btn" role="button" data-bs-toggle="button">Logout</button>
+                        </form>
                     </li>
                 </ul>
             </div>
