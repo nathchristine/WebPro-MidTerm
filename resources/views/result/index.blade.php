@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Font Awesome CDN -->
     <script src="https://kit.fontawesome.com/b09fd6009e.js" crossorigin="anonymous"></script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 
@@ -17,7 +15,6 @@
             font-family: 'Fredoka One', sans-serif;
         }
 
-        /* Navbar Styles */
         .navbar-nav .nav-link {
             font-family: 'Fredoka One', sans-serif;
             text-transform: uppercase;
@@ -58,21 +55,19 @@
             align-items: center;
         }
         .nav-item-gap {
-            margin-right: 20px; /* Add a gap between Result and Login */
+            margin-right: 20px;
         }
-        /* Score and Trash Icon Alignment */
         .list-group-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-family: 'Poppins', sans-serif; /* Apply Poppins to the participant name */
-
+            font-family: 'Poppins', sans-serif;
         }
 
         .score-trash {
             display: flex;
             align-items: center;
-            gap: 10px; /* Space between score and trash icon */
+            gap: 10px;
         }
 
         .score {
@@ -84,7 +79,6 @@
             border-radius: 50px;
         }
 
-        /* Delete Button */
         .btn-delete {
             background-color: #FF6F6F;
             border-color: #FF6F6F;
@@ -103,15 +97,14 @@
             color: #fff;
             font-weight: bold;
             border-radius: 10px;
-            padding: 10px 20px; /* Adjust padding for space between text and icon */
+            padding: 10px 20px;
             margin-right: 45px;
         }
 
         .btn-add i {
-            margin-left: 10px; /* Add space between text and icon */
+            margin-left: 10px;
         }
 
-        /* Layout */
         .scrollspy-example {
             position: relative;
             overflow-y: auto;
@@ -122,35 +115,31 @@
             cursor: pointer;
         }
 
-        /* Change the background color of the active item */
         .list-group-item.active {
             background-color: #FAEDCB !important;
             border-color: #FAEDCB !important;
-            color: #000; /* Optional: change text color for better contrast */
+            color: #000;
         }
 
         h1 {
             text-align: center;
-            margin-top: 40px; /* Increase space between navbar and h1 */
+            margin-top: 40px;
         }
 
-        /* Right alignment for the Add button */
         .add-result-container {
             display: flex;
-            justify-content: flex-end; /* Align to the right */
+            justify-content: flex-end;
             margin-right: 30px;
-            margin-top: 10px; /* Reduce space above the Add button */
+            margin-top: 10px;
         }
 
-        /* Font for participant names */
         .participant-name {
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
         }
 
-        /* Font for competition names */
         .competition-name {
-            font-family: 'Poppins', sans-serif; /* Apply Poppins to competition names */
+            font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
     </style>
@@ -158,7 +147,6 @@
 </head>
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">IUP Competition</a>
@@ -197,7 +185,6 @@
         <h1>RESULT LIST</h1>
     </div>
 
- <!-- Add this block right after the opening <body> tag or in the appropriate place -->
       <div class="container">
         @if(session('success'))
         <div id="success-message" class="alert alert-success text-center" role="alert">
@@ -206,16 +193,13 @@
         @endif
       </div>
 
-    <!-- Add button aligned to the right -->
     <div class="add-result-container">
         <a href="/IUPResultList/Add" class="btn btn-add">
             Add Result <i class="fa-solid fa-user-plus fa-beat"></i>
         </a>
     </div>
-    <!-- Participant List and Results Section -->
     <div class="container">
         <div class="row">
-            <!-- Competition List on the Left -->
             <div class="col-4">
               <div id="list-example" class="list-group">
                 @foreach($competition as $c)
@@ -224,11 +208,10 @@
               </div>
             </div>
 
-            <!-- Scrollable Results on the Right -->
             <div class="col-8">
                 <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
                   @foreach($competition as $c)
-                  <h4 id="list-item-{{$c->id}}" class="competition-name">{{$c->name}}</h4> <!-- Applied Poppins to competition names -->
+                  <h4 id="list-item-{{$c->id}}" class="competition-name">{{$c->name}}</h4>
                   <ul class="list-group mb-3">
                     @foreach($result->where('competition_id', $c->id) as $r)
                       <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -255,7 +238,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       const jsConfetti = new JSConfetti();
@@ -263,7 +245,6 @@
       window.onload = function() {
           const successMessage = document.getElementById('success-message');
           if (successMessage) {
-              // Show confetti
               jsConfetti.addConfetti({
                   confettiRadius: 6,
                   confettiNumber: 500,
@@ -271,15 +252,10 @@
 
               setTimeout(() => {
                     successMessage.classList.add('fade-out');
-                }, 3000);  // 3-second delay before hiding the message
+                }, 3000);
 
-                // Remove the element from the DOM after the fade-out transition (after 4 seconds)
                 setTimeout(() => {
                     successMessage.remove();
                 }, 4000);
             }
-          };
-      
-    </script>
-</body>
-</html>
+         
