@@ -85,7 +85,7 @@
 </head>
 <body>
 
-    <h1>UPDATE NEW COMPETITION</h1>
+    <h1>UPDATE COMPETITION</h1>
 
     <div class="back-result-container">
         <a href="/IUPCompeList/" class="btn btn-back">
