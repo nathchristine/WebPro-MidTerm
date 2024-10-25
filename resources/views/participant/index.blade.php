@@ -41,21 +41,20 @@
             font-size: 1.1rem;
         }
         .navbar {
-            background-color: #FAEDCB; /* Light yellow background */
+            background-color: #FAEDCB;
             padding: 20px;
-            /* Removed border */
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
-            border-radius: 25px; /* Rounded corners for navbar */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
             font-size: 1.2rem;
-            margin-left: 30px;  /* Add left margin */
-            margin-right: 30px; /* Add right margin */
-            margin-top: 20px;  /* Add top margin */
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 20px;
         }
         .navbar-nav {
             align-items: center;
         }
         .nav-item-gap {
-            margin-right: 20px; /* Add a gap between Result and Login */
+            margin-right: 20px;
         }
 
         .participant-list {
@@ -153,29 +152,26 @@
             border-color: #FF6F6F;
         }
 
-        /* Fade-out transition */
         .fade-out {
             opacity: 0;
             transition: opacity 1s ease-out;
         }
 
-        /* Right alignment for the Add button */
         .add-participant-container {
             display: flex;
-            justify-content: flex-end; /* Keep the button aligned to the right */
+            justify-content: flex-end;
             margin-right: 30px;
         }
 
         h1 {
             text-align: center;
-            margin-top: 40px; /* Increase space between navbar and h1 */
+            margin-top: 40px;
         }
     </style>
     <title>Participant List</title>
 </head>
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">IUP Competition</a>
@@ -211,7 +207,6 @@
         <h1>PARTICIPANT LIST</h1>
     </div>
 
-    <!-- Success Message -->
     <div class="container">
         @if(session('success'))
         <div id="success-message" class="alert alert-success text-center" role="alert">
@@ -220,14 +215,12 @@
         @endif
     </div>
 
-    <!-- Add button aligned to the right -->
     <div class="add-participant-container">
         <a href="/IUPParticipantList/Add" class="btn btn-add">
             Add Participant <i class="fa-solid fa-user-plus fa-beat"></i>
         </a>
     </div>
 
-    <!-- Participant List Section -->
     <div class="participant-list">
         @foreach($participant as $p)
         <div class="participant-card">
@@ -265,18 +258,15 @@
         window.onload = function() {
             const successMessage = document.getElementById('success-message');
             if (successMessage) {
-                // Show confetti
                 jsConfetti.addConfetti({
                     confettiRadius: 6,
                     confettiNumber: 500,
                 });
 
-                // Automatically hide the message after 3 seconds
                 setTimeout(() => {
                     successMessage.classList.add('fade-out');
-                }, 3000);  // 3-second delay before hiding the message
+                }, 3000);
 
-                // Remove the element from the DOM after the fade-out transition (after 4 seconds)
                 setTimeout(() => {
                     successMessage.remove();
                 }, 4000);
