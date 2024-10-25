@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Font Awesome CDN -->
     <script src="https://kit.fontawesome.com/b09fd6009e.js" crossorigin="anonymous"></script>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 
     <style>
         body {
@@ -55,7 +53,7 @@
             align-items: center;
         }
         .nav-item-gap {
-            margin-right: 20px; /* Add a gap between Result and Login */
+            margin-right: 20px;
         }
 
         .btn-update, .btn-delete {
@@ -72,7 +70,6 @@
             padding: 10px;
         }
         
-        /* Specific color change for delete button */
         .btn-delete {
             background-color: #FF6F6F;
             border-color: #FF6F6F;
@@ -87,40 +84,36 @@
             color: #fff;
             font-weight: bold;
             border-radius: 10px;
-            padding: 10px 20px; /* Adjust padding for space between text and icon */
+            padding: 10px 20px;
             margin-right: 45px;
         }
 
         .btn-add i {
-            margin-left: 10px; /* Add space between text and icon */
+            margin-left: 10px;
         }
 
-        /* Card style adjustments */
         .participant-list .card {
-            margin-top: 20px; /* Less space between the add button and cards */
+            margin-top: 20px;
             margin-bottom: 20px;
-            font-family: 'Poppins', sans-serif; /* Apply Poppins to the participant name */
-
+            font-family: 'Poppins', sans-serif;
         }
 
         h1 {
             text-align: center;
-            margin-top: 40px; /* Increase space between navbar and h1 */
+            margin-top: 40px;
         }
 
-        /* Right alignment for the Add button */
         .add-competition-container {
             display: flex;
-            justify-content: flex-end; /* Align to the right */
+            justify-content: flex-end;
             margin-right: 30px;
-            margin-top: 10px; /* Reduce space above the Add button */
+            margin-top: 10px;
         }
     </style>
     <title>Competition List</title>
 </head>
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">IUP Competition</a>
@@ -156,8 +149,7 @@
         <h1>COMPETITION LIST</h1>
     </div>
 
-     <!-- Add this block right after the opening <body> tag or in the appropriate place -->
-        <div class="container">
+     <div class="container">
             @if(session('success'))
             <div id="success-message" class="alert alert-success text-center" role="alert">
                 {{ session('success') }}
@@ -165,24 +157,21 @@
             @endif
         </div>
 
-    <!-- Add button aligned to the right -->
     <div class="add-competition-container">
         <a href="/IUPCompeList/Add" class="btn btn-add">
             Add Competition <i class="fa-solid fa-user-plus fa-beat"></i>
         </a>
     </div>
 
-    <!-- Participant List Section -->
     <div class="container participant-list">
         <div class="row">
             @foreach($competition as $c)
-            <div class="col-md-4"> <!-- Adjust for 3 columns on medium-sized screens -->
+            <div class="col-md-4">
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">{{$c->name}}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{$c->date}}</h6>
                         <p class="card-text">{{$c->description}}</p>
-                        <!-- Action buttons aligned to the right -->
                         <div class="d-flex justify-content-end">
                             <a href="/IUPCompeList/Update/{{$c->id}}" class="btn btn-update me-2">
                                 <i class="fa-solid fa-pencil fa-beat"></i>
@@ -202,7 +191,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       const jsConfetti = new JSConfetti();
@@ -210,7 +198,6 @@
       window.onload = function() {
           const successMessage = document.getElementById('success-message');
           if (successMessage) {
-              // Show confetti
               jsConfetti.addConfetti({
                   confettiRadius: 6,
                   confettiNumber: 500,
@@ -218,9 +205,8 @@
 
               setTimeout(() => {
                     successMessage.classList.add('fade-out');
-                }, 3000);  // 3-second delay before hiding the message
+                }, 3000);
 
-                // Remove the element from the DOM after the fade-out transition (after 4 seconds)
                 setTimeout(() => {
                     successMessage.remove();
                 }, 4000);
