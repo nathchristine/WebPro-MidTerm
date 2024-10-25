@@ -12,70 +12,63 @@
         }
         .navbar-nav .nav-link {
             font-family: 'Fredoka One', sans-serif;
-            text-transform: uppercase; /* Make navbar links uppercase */
+            text-transform: uppercase;
         }
         .navbar-brand {
-            text-transform: uppercase; /* Make navbar brand uppercase */
-            font-size: 1.5rem; /* Adjust brand text size */
+            text-transform: uppercase;
+            font-size: 1.5rem;
         }
         .login-btn {
-            background-color: #A8DADC; /* Pastel teal color for login */
+            background-color: #A8DADC;
             border-color: #A8DADC;
-            text-transform: uppercase; /* Make Login button text uppercase */
+            text-transform: uppercase;
             padding: 10px 20px;
-            color: #000; /* Make text black */
-            border-radius: 10px; /* Rounded button */
+            color: #000;
+            border-radius: 10px;
             font-size: 1.1rem;
         }
         .register-btn {
-            background-color: #F4A3A8; /* Pastel pink color for register */
+            background-color: #F4A3A8;
             border-color: #F4A3A8;
-            text-transform: uppercase; /* Make Register button text uppercase */
+            text-transform: uppercase;
             padding: 10px 20px;
-            color: #000; /* Make text black */
-            border-radius: 10px; /* Rounded button */
+            color: #000;
+            border-radius: 10px;
             font-size: 1.1rem;
         }
         .navbar {
-            background-color: #FAEDCB; /* Light yellow background */
+            background-color: #FAEDCB;
             padding: 20px;
-            /* Removed border */
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
-            border-radius: 25px; /* Rounded corners for navbar */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
             font-size: 1.2rem;
-            margin-left: 30px;  /* Add left margin */
-            margin-right: 30px; /* Add right margin */
-            margin-top: 20px;  /* Add top margin */
+            margin: 20px 30px;
         }
 
         .navbar-nav {
-            align-items: center; /* Align navbar items vertically */
+            align-items: center;
         }
         .nav-item-gap {
-            margin-right: 20px; /* Add a gap between Result and Login */
+            margin-right: 20px;
         }
         h1 {
             text-align: center;
             font-size: 3rem;
-            font-family: 'Fredoka One', sans-serif;
-            margin-top: 225px;
-            margin-bottom: 25px;
+            margin: 225px 0 25px;
             display: flex;
-            justify-content: center; /* Horizontally center */
-            align-items: center; /* Vertically center */
+            justify-content: center;
+            align-items: center;
         }
         .button-container {
             display: flex;
-            gap: 20px; /* Space between buttons */
+            justify-content: center;
+            gap: 20px;
         }
-        .welcome-button {
-            justify-content: center; /* Center buttons */
-        }
-        .login2{
+        .login2 {
             background-color: #DBCDF0;
             border-color: #DBCDF0;
         }
-        .reg2{
+        .reg2 {
             background-color: #F7D9C4;
             border-color: #F7D9C4;
         }
@@ -83,45 +76,43 @@
     <title>IUP Competition</title>
 </head>
 <body>
-    <!-- Navbar with rounded corners and pastel buttons -->
     <nav class="navbar navbar-expand-lg navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">IUP Competition</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse align-right" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/IUPParticipantList">Participant</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="IUPCompeList">Competition</a>
-              </li>
-              <li class="nav-item nav-item-gap">
-                <a class="nav-link" href="IUPResultList">Result</a>
-              </li>
-             
-              <li class="nav-item">
-                <a href="/login" class="btn login-btn me-2" role="button" data-bs-toggle="button">Login</a>
-            </li>
-            <li class="nav-item">
-                <a href="/register" class="btn register-btn" role="button" data-bs-toggle="button">Register</a>
-            </li>
-            </ul>
-          </div>
-          
+            <a class="navbar-brand" href="#">IUP Competition</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse align-right" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/IUPParticipantList">Participant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/IUPCompeList">Competition</a>
+                    </li>
+                    <li class="nav-item nav-item-gap">
+                        <a class="nav-link" href="/IUPResultList">Result</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login" class="btn login-btn me-2" role="button">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/register" class="btn register-btn" role="button">Register</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
+    </nav>
 
-      <h1>WELCOME TO IUP COMPETITION</h1>
+    <h1>WELCOME TO IUP COMPETITION</h1>
     
-    <!-- Button container to center and align buttons side by side -->
-    <div class="button-container welcome-button">
+    <div class="button-container">
         <a href="/IUPResultList" class="btn login-btn reg2" role="button">VIEW RESULTS</a>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
